@@ -1,0 +1,10 @@
+{% extends 'minegocio/base.html' %}
+
+{% block contenido %}
+    <h1>Crear Reporte</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+{% endblock contenido %}

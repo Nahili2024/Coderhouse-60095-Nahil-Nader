@@ -1,0 +1,11 @@
+{% extends 'minegocio/base.html' %}
+
+{% block contenido %}
+    <h1>Lista de Transacciones</h1>
+    <a href="{% url 'minegocio:transaccion_create' %}"><button>Crear Transaccion</button></a>
+    <ul>
+        {% for object in object_list %}
+            <p>{{ object.dni }} | {{ object.cantidad}} | {{ object.monto}} |{{ object.producto}} | {{ object.fecha }}</p>
+        {% endfor %}
+    </ul>
+{% endblock contenido %}

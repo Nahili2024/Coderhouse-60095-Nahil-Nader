@@ -14,7 +14,7 @@ class TransaccionAdmin(admin.ModelAdmin):
 
 @admin.register(Producto)
 class ProductoAdmin(admin.ModelAdmin):
-    list_display = ("categoria")
+    list_display = ("categoria",)
 
 @admin.register(Reporte)
 class ReporteAdmin(admin.ModelAdmin):

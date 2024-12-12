@@ -1,0 +1,11 @@
+{% extends 'minegocio/base.html' %}
+
+{% block contenido %}
+    <h1>Lista de Reportes</h1>
+    <a href="{% url 'minegocio:reporte_create' %}"><button>Crear Reporte</button></a>
+    <ul>
+        {% for object in object_list %}
+            <p>{{ object.nombre }}</p>
+        {% endfor %}
+    </ul>
+{% endblock contenido %}
