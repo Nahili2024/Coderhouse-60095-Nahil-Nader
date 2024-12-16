@@ -21,15 +21,8 @@ class Vendedor(models.Model):
     nombre = models.CharField(max_length=13)
     dni = models.PositiveIntegerField(unique=True)
 
-    def _str_(self):
+    def __str__(self):
         return f"{self.nombre}, {self.dni}"
-    
-class Producto(models.Model):  
-    categorias = [("C","Celulares"),
-                 ("AU","Auriculares"),
-                 ("PE","Pequeños electrodomesticos"),
-                 ("T","Tablets")]
-    categoria = models.CharField(max_length=50,choices=categorias,default="PE")
     
 
 class Transaccion(models.Model):
@@ -37,14 +30,18 @@ class Transaccion(models.Model):
     fecha = models.DateField(null=True,blank=True)
     cantidad = models.PositiveIntegerField()
     monto = models.DecimalField(max_digits=10,decimal_places=2)
-    producto = models.ForeignKey(Producto,on_delete=models.CASCADE)
-
+    productos = [
+        ("C", "Celulares"),
+        ("AU", "Auriculares"),
+        ("PE", "Pequeños electrodomésticos"),
+        ("T", "Tablets")]
+    producto = models.CharField(max_length=50, choices=productos, default="PE")
 
 class Reporte(models.Model):
     dni = models.ForeignKey(Vendedor,on_delete=models.CASCADE,null=True)
     año = models.PositiveIntegerField()
     informe = models.CharField(max_length=25)
-    categorias = models.ForeignKey(Producto, on_delete=models.CASCADE,null=True)
+    producto= models.ForeignKey(Transaccion, on_delete=models.CASCADE,null=True)
     periodos = [
         ('MENSUAL', 'Mensual'),
         ('TRIMESTRAL', 'Trimestral'),
@@ -54,4 +51,4 @@ class Reporte(models.Model):
 
 
     class Meta():
-        constraints = [models.UniqueConstraint(fields=["año","categorias","periodo"], name="unico_informe_por_año")]
+        constraints = [models.UniqueConstraint(fields=["año","producto","periodo"], name="unico_informe_por_año")]
