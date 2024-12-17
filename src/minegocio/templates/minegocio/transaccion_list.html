@@ -8,4 +8,6 @@
             <p>{{ object.dni }} | {{ object.cantidad}} | {{ object.monto}} |{{ object.producto}} | {{ object.fecha }}</p>
         {% endfor %}
     </ul>
+    <a href="{% url 'minegocio:index' %}"><button>Volver</button></a>
 {% endblock contenido %}
+

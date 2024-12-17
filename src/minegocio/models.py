@@ -36,6 +36,8 @@ class Transaccion(models.Model):
         ("PE", "Pequeños electrodomésticos"),
         ("T", "Tablets")]
     producto = models.CharField(max_length=50, choices=productos, default="PE")
+    def __str__(self):
+        return self.producto
 
 class Reporte(models.Model):
     dni = models.ForeignKey(Vendedor,on_delete=models.CASCADE,null=True)
