@@ -56,7 +56,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,3 +123,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Redirigir a la página principal después de iniciar sesión
+LOGIN_REDIRECT_URL = 'minegocio:index'
+
+# Redirigir al login si el usuario no está autenticado
+LOGIN_URL = 'minegocio:login'
+
+# Redirigir al usuario a la página principal después de cerrar sesión
+LOGOUT_REDIRECT_URL = 'minegocio:index'

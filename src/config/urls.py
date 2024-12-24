@@ -22,4 +22,6 @@ urlpatterns = [
     path('core/', include("core.urls")),
     path('minegocio/', include("minegocio.urls")),
     path('', include("core.urls")),
+    
+
 ]

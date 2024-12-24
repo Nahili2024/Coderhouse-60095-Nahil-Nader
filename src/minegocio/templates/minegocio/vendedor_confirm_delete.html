@@ -1,0 +1,10 @@
+{% extends 'minegocio/base.html' %}
+
+{% block contenido %}
+    <h2>¿Estás seguro de que quieres eliminar a {{ vendedor.nombre }}?</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Sí, eliminar</button>
+    </form>
+    <a href="{% url 'minegocio:vendedor_list' %}">Cancelar</a>
+{% endblock contenido %}

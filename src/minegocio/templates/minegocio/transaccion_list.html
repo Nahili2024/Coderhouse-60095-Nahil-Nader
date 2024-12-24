@@ -2,10 +2,14 @@
 
 {% block contenido %}
     <h1>Lista de Transacciones</h1>
-    <a href="{% url 'minegocio:transaccion_create' %}"><button>Crear Transaccion</button></a>
+    <a href="{% url 'minegocio:transaccion_create' %}"><button>Crear Transacción</button></a>
     <ul>
         {% for object in object_list %}
-            <p>{{ object.dni }} | {{ object.cantidad}} | {{ object.monto}} |{{ object.producto}} | {{ object.fecha }}</p>
+            <li>
+                DNI: {{ object.dni }} | Cantidad: {{ object.cantidad }} | Monto: {{ object.monto }} | Producto: {{ object.producto }} | Fecha: {{ object.fecha }}
+                <a href="{% url 'minegocio:transaccion_edit' object.id %}"><button>Editar</button></a>
+                <a href="{% url 'minegocio:transaccion_delete' object.id %}"><button>Eliminar</button></a>
+            </li>
         {% endfor %}
     </ul>
     <a href="{% url 'minegocio:index' %}"><button>Volver</button></a>

@@ -6,8 +6,9 @@
     <table>
         <thead>
             <tr>
-                <th>nombre</th>
-                <th>dni</th>
+                <th>Nombre</th>
+                <th>DNI</th>
+                <th>Acciones</th>  
             </tr>
         </thead>
         <tbody>
@@ -15,10 +16,17 @@
                 <tr>
                     <td>{{ object.nombre }}</td>
                     <td>{{ object.dni }}</td>
+                    <td>
+                        <!-- Botón de Editar -->
+                        <a href="{% url 'minegocio:vendedor_edit' vendedor_id=object.id %}"><button>Editar</button></a>
+                        <!-- Botón de Eliminar -->
+                        <a href="{% url 'minegocio:vendedor_delete' vendedor_id=object.id %}"><button>Eliminar</button></a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
     <a href="{% url 'minegocio:index' %}"><button>Volver</button></a>
 {% endblock contenido %}
+
 

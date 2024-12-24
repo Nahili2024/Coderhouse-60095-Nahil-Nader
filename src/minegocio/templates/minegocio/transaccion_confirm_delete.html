@@ -1,0 +1,10 @@
+{% extends 'minegocio/base.html' %}
+
+{% block contenido %}
+    <h2>¿Estás seguro de que quieres eliminar esta transacción?</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Sí, eliminar</button>
+    </form>
+    <a href="{% url 'minegocio:transaccion_list' %}">Cancelar</a>
+{% endblock contenido %}

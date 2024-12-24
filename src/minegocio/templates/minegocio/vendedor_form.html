@@ -1,10 +1,11 @@
 {% extends 'minegocio/base.html' %}
 
 {% block contenido %}
-    <h1>Crear Vendedor</h1>
-    <form method="post">
+    <h1>{% if form.instance.pk %}Editar Vendedor{% else %}Crear Vendedor{% endif %}</h1>
+    <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Guardar</button>
+        <button type="submit">{% if form.instance.pk %}Guardar Cambios{% else %}Crear Vendedor{% endif %}</button>
     </form>
+    <a href="{% url 'minegocio:vendedor_list' %}"><button>Volver</button></a>
 {% endblock contenido %}
