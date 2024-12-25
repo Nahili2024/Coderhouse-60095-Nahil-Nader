@@ -1,34 +1,52 @@
-{% extends 'minegocio/base.html' %}
+{% extends 'core/base.html' %}
 
-{% block contenido %}
-    <h1>Lista de Vendedores</h1>
-    <a href="{% url 'minegocio:vendedor_create' %}"><button>Crear Vendedor</button></a>
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>DNI</th>
-                <th>Acciones</th>  
-            </tr>
-        </thead>
-        <tbody>
-            {% for object in object_list %}
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-4">Lista de Vendedores</h1>
+    <div class="text-end mb-3">
+        <a href="{% url 'minegocio:vendedor_create' %}" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Crear Vendedor
+        </a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-dark">
                 <tr>
-                    <td>{{ object.nombre }}</td>
-                    <td>{{ object.dni }}</td>
-                    <td>
-                        <!-- Enlace "Ver" -->
-                        <a href="{% url 'minegocio:vendedor_detail' vendedor_id=object.id %}"><button>Ver</button></a>
-                        <!-- Botón de Editar -->
-                        <a href="{% url 'minegocio:vendedor_edit' vendedor_id=object.id %}"><button>Editar</button></a>
-                        <!-- Botón de Eliminar -->
-                        <a href="{% url 'minegocio:vendedor_delete' vendedor_id=object.id %}"><button>Eliminar</button></a>
-                    </td>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">DNI</th>
+                    <th scope="col">Acciones</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <a href="{% url 'minegocio:index' %}"><button>Volver</button></a>
-{% endblock contenido %}
-
-
+            </thead>
+            <tbody>
+                {% for object in object_list %}
+                    <tr>
+                        <td>{{ object.nombre }}</td>
+                        <td>{{ object.dni }}</td>
+                        <td>
+                            <div class="d-flex gap-2 justify-content-center">
+                                <!-- Enlace "Ver" -->
+                                <a href="{% url 'minegocio:vendedor_detail' vendedor_id=object.id %}" class="btn btn-info btn-sm">
+                                    <i class="bi bi-eye"></i> Ver
+                                </a>
+                                <!-- Botón de Editar -->
+                                <a href="{% url 'minegocio:vendedor_edit' vendedor_id=object.id %}" class="btn btn-warning btn-sm">
+                                    <i class="bi bi-pencil"></i> Editar
+                                </a>
+                                <!-- Botón de Eliminar -->
+                                <a href="{% url 'minegocio:vendedor_delete' vendedor_id=object.id %}" class="btn btn-danger btn-sm">
+                                    <i class="bi bi-trash"></i> Eliminar
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center mt-4">
+        <a href="{% url 'minegocio:index' %}" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Volver
+        </a>
+    </div>
+</div>
+{% endblock content %}

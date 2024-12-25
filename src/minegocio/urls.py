@@ -4,7 +4,7 @@ from .views import (index, about, vendedor_create, vendedor_list,
                     reporte_create, reporte_list, vendedor_detail,
                     vendedor_edit, vendedor_delete,transaccion_detail, 
                     transaccion_edit, transaccion_delete,
-                    login_view, signup_view)
+                    login_view, signup_view, view_profile, edit_profile)
 from django.contrib.auth.views import LogoutView
 
 app_name = "minegocio"
@@ -27,5 +27,7 @@ urlpatterns = [
     path('login/', login_view, name='login'),
     path('signup/', signup_view, name='signup'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('profile/', view_profile, name='view_profile'),
+    path('profile/edit/', edit_profile, name='edit_profile'),
 ]
 

@@ -1,13 +1,28 @@
-{% extends 'minegocio/base.html' %}
+{% extends 'core/base.html' %}
 
-{% block contenido %}
-  <main>
-    <h1>Iniciar sesión</h1>
-    <form method="POST">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Iniciar sesión</button>
-    </form>
-    <p>No tienes una cuenta? <a href="{% url 'minegocio:signup' %}">Regístrate aquí</a></p>
-  </main>
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-4">
+        <h1 class="display-4">Iniciar sesión</h1>
+        <p class="lead">Accede a tu cuenta para gestionar tu negocio.</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <form method="POST" class="bg-light p-4 rounded shadow">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary btn-block w-100 mt-3">Iniciar sesión</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <p class="fs-6">
+            ¿No tienes una cuenta? 
+            <a href="{% url 'minegocio:signup' %}" class="text-decoration-none text-primary">Regístrate aquí</a>
+        </p>
+    </div>
+</div>
 {% endblock %}
+

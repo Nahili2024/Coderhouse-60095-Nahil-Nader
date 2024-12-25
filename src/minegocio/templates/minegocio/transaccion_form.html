@@ -1,11 +1,26 @@
-{% extends 'minegocio/base.html' %}
+{% extends 'core/base.html' %}
 
-{% block contenido %}
-    <h1>{% if form.instance.pk %}Editar Transacción{% else %}Crear Transacción{% endif %}</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">{% if form.instance.pk %}Guardar Cambios{% else %}Crear Transacción{% endif %}</button>
-    </form>
-    <a href="{% url 'minegocio:transaccion_list' %}"><button>Volver</button></a>
-{% endblock contenido %}
+{% block content %}
+<div class="container py-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+            <h1>{% if form.instance.pk %}Editar Transacción{% else %}Crear Transacción{% endif %}</h1>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ form.as_p }}
+                </div>
+                <button type="submit" class="btn btn-success w-100">
+                    {% if form.instance.pk %}Guardar Cambios{% else %}Crear Transacción{% endif %}
+                </button>
+            </form>
+        </div>
+        <div class="card-footer text-center">
+            <a href="{% url 'minegocio:transaccion_list' %}" class="btn btn-secondary">Volver</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

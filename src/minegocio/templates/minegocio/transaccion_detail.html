@@ -1,13 +1,22 @@
-{% extends 'minegocio/base.html' %}
+{% extends 'core/base.html' %}
 
-{% block contenido %}
-    <h1>Detalles de la Transacción</h1>
-    <p><strong>Vendedor:</strong> {{ transaccion.dni.nombre }}</p>
-    <p><strong>DNI del Vendedor:</strong> {{ transaccion.dni.dni }}</p>
-    <p><strong>Producto:</strong> {{ transaccion.get_producto_display }}</p>
-    <p><strong>Cantidad:</strong> {{ transaccion.cantidad }}</p>
-    <p><strong>Monto:</strong> {{ transaccion.monto }}</p>
-    <p><strong>Fecha:</strong> {{ transaccion.fecha }}</p>
-    
-    <a href="{% url 'minegocio:transaccion_list' %}"><button>Volver a la lista</button></a>
-{% endblock contenido %}
+{% block content %}
+<div class="container py-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+            <h1>Detalles de la Transacción</h1>
+        </div>
+        <div class="card-body">
+            <p><strong>Vendedor:</strong> {{ transaccion.dni.nombre }}</p>
+            <p><strong>DNI del Vendedor:</strong> {{ transaccion.dni.dni }}</p>
+            <p><strong>Producto:</strong> {{ transaccion.get_producto_display }}</p>
+            <p><strong>Cantidad:</strong> {{ transaccion.cantidad }}</p>
+            <p><strong>Monto:</strong> ${{ transaccion.monto }}</p>
+            <p><strong>Fecha:</strong> {{ transaccion.fecha }}</p>
+        </div>
+        <div class="card-footer text-center">
+            <a href="{% url 'minegocio:transaccion_list' %}" class="btn btn-secondary">Volver a la lista</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

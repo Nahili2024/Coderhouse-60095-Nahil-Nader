@@ -6,6 +6,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from .forms import EditProfileForm
+
+
 
 # Create your views here.
 
@@ -92,7 +95,6 @@ def transaccion_delete(request, transaccion_id):
     return render(request, "minegocio/transaccion_confirm_delete.html", {"transaccion": transaccion})
 
 
-
 def reporte_list(request):
     query = Reporte.objects.all()
     context = {"object_list": query}
@@ -108,8 +110,6 @@ def reporte_create(request):
             form.save()
             return redirect("minegocio:reporte_list")
     return render(request, "minegocio/reporte_form.html", {"form": form})
-
-
 
 
 def login_view(request):
@@ -139,4 +139,20 @@ def signup_view(request):
         form = UserCreationForm()
     return render(request, 'minegocio/signup.html', {'form': form})
 
+@login_required
+def view_profile(request):
+    user = request.user  # Obtén el usuario actual
+    return render(request, 'minegocio/view_profile.html', {'user': user})
 
+@login_required
+def edit_profile(request):
+    user = request.user
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, '¡Perfil actualizado exitosamente!')
+            return redirect('minegocio:edit_profile')  # Redirige a la misma página después de guardar
+    else:
+        form = EditProfileForm(instance=user)
+    return render(request, 'minegocio/edit_profile.html', {'form': form})

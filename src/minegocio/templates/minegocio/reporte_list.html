@@ -1,13 +1,33 @@
-{% extends 'minegocio/base.html' %} 
+{% extends 'core/base.html' %}
 
-{% block contenido %}
-    <h1>Lista de Reportes</h1>
-    <a href="{% url 'minegocio:reporte_create' %}"><button>Crear Reporte</button></a>
-    <ul>
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-4">
+        <h1 class="display-4">Lista de Reportes</h1>
+        <p class="lead">Consulta y administra los reportes generados.</p>
+    </div>
+
+    <div class="mb-4 text-center">
+        <a href="{% url 'minegocio:reporte_create' %}" class="btn btn-primary">Crear Reporte</a>
+    </div>
+
+    <ul class="list-group mb-4">
         {% for object in object_list %}
-            <p>{{ object.dni}} - {{ object.producto}} - {{object.periodo}} </p>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>
+                    <strong>DNI:</strong> {{ object.dni }} 
+                    | <strong>Producto:</strong> {{ object.producto }} 
+                    | <strong>Período:</strong> {{ object.periodo }}
+                </span>
+            </li>
+        {% empty %}
+            <li class="list-group-item text-center">No hay reportes disponibles.</li>
         {% endfor %}
     </ul>
-    <a href="{% url 'minegocio:index' %}"><button>Volver</button></a>
-{% endblock contenido %}
+
+    <div class="text-center">
+        <a href="{% url 'minegocio:index' %}" class="btn btn-secondary">Volver</a>
+    </div>
+</div>
+{% endblock %}
 

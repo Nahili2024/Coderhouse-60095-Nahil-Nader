@@ -1,23 +1,33 @@
-{% extends 'minegocio/base.html' %}
+{% extends 'core/base.html' %}
 
-{% block contenido %}
-  <main>
-    <h1>Bienvenido a Mi Negocio</h1>
-    <p>Bienvenido a la página de inicio de Mi Negocio. Aquí podrás gestionar vendedores, transacciones y más.</p>
+{% block content %}
+<div class="container py-5">
+    <main class="text-center">
+        <h1 class="display-4 mb-4">Bienvenido a Mi Negocio</h1>
+        <p class="lead mb-5">Aquí podrás gestionar vendedores, transacciones y más.</p>
 
-    {% if not user.is_authenticated %}
-      <div>
-        <a href="{% url 'minegocio:login' %}">
-          <button>Iniciar sesión</button>
-        </a>
-        <a href="{% url 'minegocio:signup' %}">
-          <button>Registrarse</button>
-        </a>
-      </div>
-    {% endif %}
-    
-    <a href="{% url 'minegocio:vendedor_list' %}"><button>Vendedores</button></a>
-    <a href="{% url 'minegocio:transaccion_list' %}"><button>Transacciones</button></a>
-    <a href="{% url 'minegocio:reporte_list' %}"><button>Reportes</button></a>
-  </main>
+        {% if not user.is_authenticated %}
+            <div class="d-flex justify-content-center mb-4 gap-3">
+                <a href="{% url 'minegocio:login' %}" class="btn btn-primary btn-lg">
+                    <i class="bi bi-box-arrow-in-right"></i> Iniciar sesión
+                </a>
+                <a href="{% url 'minegocio:signup' %}" class="btn btn-success btn-lg">
+                    <i class="bi bi-person-plus"></i> Registrarse
+                </a>
+            </div>
+        {% endif %}
+
+        <div class="d-flex justify-content-center gap-3">
+            <a href="{% url 'minegocio:vendedor_list' %}" class="btn btn-outline-primary btn-lg">
+                <i class="bi bi-people"></i> Vendedores
+            </a>
+            <a href="{% url 'minegocio:transaccion_list' %}" class="btn btn-outline-secondary btn-lg">
+                <i class="bi bi-currency-dollar"></i> Transacciones
+            </a>
+            <a href="{% url 'minegocio:reporte_list' %}" class="btn btn-outline-info btn-lg">
+                <i class="bi bi-graph-up"></i> Reportes
+            </a>
+        </div>
+    </main>
+</div>
 {% endblock %}

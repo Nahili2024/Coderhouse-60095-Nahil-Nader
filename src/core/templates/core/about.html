@@ -1,14 +1,35 @@
+{% extends 'core/base.html' %}
+
 {% load static %}
 
-<h1>Nosotros</h1>
-<p>¡Hola! Somos una compañia lider en soluciones para el seguimiento y control de tu negocio con más de 20 años de exteriencia en el sector. En nuestra plataforma, te ofrecemos una solución integral para visualizar y analizar los datos clave de ventas de tu negocio. Con herramientas intuitivas y accesibles, podrás generar reportes detallados, realizar análisis de rendimiento y tomar decisiones basadas en información precisa y actualizada.</p>
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-4">
+        <h1 class="display-4">Nosotros</h1>
+        <p class="lead">¡Hola! Somos una compañía líder en soluciones para el seguimiento y control de tu negocio con más de 20 años de experiencia en el sector.</p>
+    </div>
 
-<p>Explora nuestra plataforma y comienza a transformar los datos de ventas en insights valiosos para tu empresa. ¡Todo lo que necesitas para entender y mejorar tu desempeño de ventas está aquí!</p>
+    <div class="mb-4">
+        <p class="fs-5">En nuestra plataforma, te ofrecemos una solución integral para visualizar y analizar los datos clave de ventas de tu negocio. Con herramientas intuitivas y accesibles, podrás generar reportes detallados, realizar análisis de rendimiento y tomar decisiones basadas en información precisa y actualizada.</p>
+        <p class="fs-5">Explora nuestra plataforma y comienza a transformar los datos de ventas en insights valiosos para tu empresa. ¡Todo lo que necesitas para entender y mejorar tu desempeño de ventas está aquí!</p>
+    </div>
 
-<img src="{% static 'core/img/perfil.png' %}" alt="" height=35%>
+    <div class="text-center mb-4">
+        <img src="{% static 'core/img/perfil.png' %}" alt="Perfil de la compañía" class="img-fluid rounded shadow-lg" style="max-height: 300px;">
+    </div>
 
-<p>Contacto: 
-    atencion@minegocio.com.ar
-</p>
-<a href="{% url 'core:index' %}">Volver al inicio</a>
+    <div class="bg-light p-4 rounded shadow">
+        <h3 class="text-center mb-3">Contacto</h3>
+        <p class="fs-5">
+            <strong>Mail:</strong> <a href="mailto:atencion@minegocio.com.ar" class="text-decoration-none">atencion@minegocio.com.ar</a><br>
+            <strong>Teléfono:</strong> <a href="tel:+549111234567" class="text-decoration-none">+54 9 (11) 123-4567</a>
+        </p>
+    </div>
 
+    <div class="text-center mt-4">
+        <a href="{% url 'core:index' %}" class="btn btn-outline-primary btn-lg">
+            <i class="bi bi-arrow-left"></i> Volver al inicio
+        </a>
+    </div>
+</div>
+{% endblock %}

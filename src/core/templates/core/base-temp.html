@@ -17,7 +17,10 @@
                         {% csrf_token %}
                         <button type="submit">Cerrar sesión</button>
                     </form>
+                        <li><a href="{% url 'minegocio:view_profile' %}">Mi Perfil</a></li>
+
                 {% endif %}
+                
             </ul>
         </nav>
     </header>

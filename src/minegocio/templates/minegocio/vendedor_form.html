@@ -1,11 +1,34 @@
-{% extends 'minegocio/base.html' %}
+{% extends 'core/base.html' %}
 
-{% block contenido %}
-    <h1>{% if form.instance.pk %}Editar Vendedor{% else %}Crear Vendedor{% endif %}</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">{% if form.instance.pk %}Guardar Cambios{% else %}Crear Vendedor{% endif %}</button>
-    </form>
-    <a href="{% url 'minegocio:vendedor_list' %}"><button>Volver</button></a>
-{% endblock contenido %}
+{% block content %}
+<div class="container py-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+            <h1 class="h4 mb-0">
+                {% if form.instance.pk %}
+                    Editar Vendedor
+                {% else %}
+                    Crear Vendedor
+                {% endif %}
+            </h1>
+        </div>
+        <div class="card-body">
+            <form method="POST" class="needs-validation" novalidate>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-success">
+                        {% if form.instance.pk %}
+                            Guardar Cambios
+                        {% else %}
+                            Crear Vendedor
+                        {% endif %}
+                    </button>
+                    <a href="{% url 'minegocio:vendedor_list' %}" class="btn btn-secondary">Volver</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

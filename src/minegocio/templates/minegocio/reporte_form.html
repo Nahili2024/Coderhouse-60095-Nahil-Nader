@@ -1,10 +1,23 @@
-{% extends 'minegocio/base.html' %}
+{% extends 'core/base.html' %}
 
-{% block contenido %}
-    <h1>Crear Reporte</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Guardar</button>
-    </form>
-{% endblock contenido %}
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-4">
+        <h1 class="display-4">Crear Reporte</h1>
+        <p class="lead">Llena el formulario para generar un nuevo reporte.</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <form method="post" class="bg-light p-4 rounded shadow">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-success btn-block w-100 mt-3">Guardar</button>
+            </form>
+        </div>
+        <div class="card-footer text-center">
+            <a href="{% url 'minegocio:transaccion_list' %}" class="btn btn-secondary">Volver</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

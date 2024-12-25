@@ -1,18 +1,45 @@
-{% extends 'minegocio/base.html' %}
+{% extends 'core/base.html' %}
 
-{% block contenido %}
-    <h1>Lista de Transacciones</h1>
-    <a href="{% url 'minegocio:transaccion_create' %}"><button>Crear Transacción</button></a>
-    <ul>
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-4">Lista de Transacciones</h1>
+    <div class="text-end mb-3">
+        <a href="{% url 'minegocio:transaccion_create' %}" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Crear Transacción
+        </a>
+    </div>
+    <ul class="list-group">
         {% for object in object_list %}
-            <li>
-                DNI: {{ object.dni }} | Cantidad: {{ object.cantidad }} | Monto: {{ object.monto }} | Producto: {{ object.producto }} | Fecha: {{ object.fecha }}
-                <a href="{% url 'minegocio:transaccion_detail' transaccion_id=object.id %}"><button>Ver</button></a>
-                <a href="{% url 'minegocio:transaccion_edit' object.id %}"><button>Editar</button></a>
-                <a href="{% url 'minegocio:transaccion_delete' object.id %}"><button>Eliminar</button></a>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>DNI:</strong> {{ object.dni }} | 
+                    <strong>Cantidad:</strong> {{ object.cantidad }} | 
+                    <strong>Monto:</strong> ${{ object.monto }} | 
+                    <strong>Producto:</strong> {{ object.producto }} | 
+                    <strong>Fecha:</strong> {{ object.fecha }}
+                </div>
+                <div class="btn-group" role="group">
+                    <!-- Enlace "Ver" -->
+                    <a href="{% url 'minegocio:transaccion_detail' transaccion_id=object.id %}" class="btn btn-info btn-sm">
+                        <i class="bi bi-eye"></i> Ver
+                    </a>
+                    <!-- Enlace "Editar" -->
+                    <a href="{% url 'minegocio:transaccion_edit' object.id %}" class="btn btn-warning btn-sm">
+                        <i class="bi bi-pencil"></i> Editar
+                    </a>
+                    <!-- Enlace "Eliminar" -->
+                    <a href="{% url 'minegocio:transaccion_delete' object.id %}" class="btn btn-danger btn-sm">
+                        <i class="bi bi-trash"></i> Eliminar
+                    </a>
+                </div>
             </li>
         {% endfor %}
     </ul>
-    <a href="{% url 'minegocio:index' %}"><button>Volver</button></a>
-{% endblock contenido %}
+    <div class="text-center mt-4">
+        <a href="{% url 'minegocio:index' %}" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Volver
+        </a>
+    </div>
+</div>
+{% endblock content %}
 
