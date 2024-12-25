@@ -18,6 +18,11 @@ class TransaccionForm(forms.ModelForm):
             "fecha": forms.DateInput(attrs={"type": "date"}),
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['dni'].queryset = Vendedor.objects.all()
+        self.fields['dni'].label_from_instance = lambda obj: obj.dni
+
 
 class ReporteForm(forms.ModelForm):
     class Meta:
