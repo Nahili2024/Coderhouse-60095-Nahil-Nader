@@ -14,12 +14,6 @@
           <button>Registrarse</button>
         </a>
       </div>
-    {% else %}
-      <div>
-        <a href="{% url 'minegocio:logout' %}">
-          <button>Cerrar sesión</button>
-        </a>
-      </div>
     {% endif %}
     
     <a href="{% url 'minegocio:vendedor_list' %}"><button>Vendedores</button></a>

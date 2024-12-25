@@ -1,0 +1,9 @@
+{% extends 'minegocio/base.html' %}
+
+{% block contenido %}
+    <h1>Detalles del Vendedor</h1>
+    <p><strong>Nombre:</strong> {{ vendedor.nombre }}</p>
+    <p><strong>DNI:</strong> {{ vendedor.dni }}</p>
+    
+    <a href="{% url 'minegocio:vendedor_list' %}"><button>Volver a la lista</button></a>
+{% endblock contenido %}

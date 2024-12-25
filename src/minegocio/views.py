@@ -4,6 +4,7 @@ from .models import Vendedor, Transaccion, Reporte
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 # Create your views here.
@@ -29,6 +30,10 @@ def vendedor_create(request):
             form.save()
             return redirect("minegocio:vendedor_list")
     return render(request, "minegocio/vendedor_form.html", {"form": form})
+
+def vendedor_detail(request, vendedor_id):
+    vendedor = get_object_or_404(Vendedor, pk=vendedor_id)
+    return render(request, "minegocio/vendedor_detail.html", {"vendedor": vendedor})
 
 def vendedor_edit(request, vendedor_id):
     vendedor = get_object_or_404(Vendedor, pk=vendedor_id)
@@ -63,6 +68,10 @@ def transaccion_create(request):
             form.save()
             return redirect("minegocio:transaccion_list")
     return render(request, "minegocio/transaccion_form.html", {"form": form})
+
+def transaccion_detail(request, transaccion_id):
+    transaccion = get_object_or_404(Transaccion, pk=transaccion_id)
+    return render(request, "minegocio/transaccion_detail.html", {"transaccion": transaccion})
 
 def transaccion_edit(request, transaccion_id):
     transaccion = get_object_or_404(Transaccion, pk=transaccion_id)
@@ -124,6 +133,7 @@ def signup_view(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Registro exitoso. Ahora puedes iniciar sesión.')
             return redirect('minegocio:login')
     else:
         form = UserCreationForm()

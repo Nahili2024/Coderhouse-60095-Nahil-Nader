@@ -9,9 +9,54 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
 </head>
 <body>
-    {% block contenido %}        
+    <header>
+        <nav>
+            <ul>
+                {% if user.is_authenticated %}
+                    <form method="POST" action="{% url 'minegocio:logout' %}">
+                        {% csrf_token %}
+                        <button type="submit">Cerrar sesión</button>
+                    </form>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    {% block contenido %}
     {% endblock contenido %}
+
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="message {{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <style>
+        .messages {
+            margin-top: 20px;
+        }
+    
+        .message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+    
+        .message.success {
+            background-color: #4CAF50;
+            color: white;
+        }
+    
+        .message.error {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+
+<a href="{% url 'core:index' %}">Volver al inicio</a>
 </body>
 </html>
-
-<a href="{% url 'core:index' %}">Inicio</a>

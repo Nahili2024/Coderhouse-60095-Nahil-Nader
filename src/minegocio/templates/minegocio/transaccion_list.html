@@ -7,6 +7,7 @@
         {% for object in object_list %}
             <li>
                 DNI: {{ object.dni }} | Cantidad: {{ object.cantidad }} | Monto: {{ object.monto }} | Producto: {{ object.producto }} | Fecha: {{ object.fecha }}
+                <a href="{% url 'minegocio:transaccion_detail' transaccion_id=object.id %}"><button>Ver</button></a>
                 <a href="{% url 'minegocio:transaccion_edit' object.id %}"><button>Editar</button></a>
                 <a href="{% url 'minegocio:transaccion_delete' object.id %}"><button>Eliminar</button></a>
             </li>
