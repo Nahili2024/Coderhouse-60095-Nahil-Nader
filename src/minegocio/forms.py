@@ -1,5 +1,4 @@
 from django import forms
-
 from .models import Vendedor, Transaccion, Reporte
 from django.contrib.auth.models import User
 
